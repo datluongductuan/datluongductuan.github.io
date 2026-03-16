@@ -1,0 +1,25 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Dat Luong blog'
+theme = "paper"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[services]
+  [services.disqus]
+    shortname = 'datluong'     # use disqus comments
+
+[params]
+  # color style
+  color = 'linen'                           # linen, wheat, gray, light
+
+  # header social icons
+  github = 'datluongductuan'                 # github.com/YOUR_GITHUB_ID
+  linkedin = 'dat-luong-432579158'             # linkedin.com/in/YOUR_LINKEDIN_ID
+
+  # home page profile
+  avatar = 'https://avatars.githubusercontent.com/u/105619094?v=4'                 # gravatar email or image url
+  name = 'Dat Luong'
+  bio = 'Software Engineer'

@@ -1,0 +1,237 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en-us"
+  dir="ltr"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình - Dat Luong blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ Lập trình viên sang Trình biên dịch (Compiler) và Môi trường thực thi (Runtime).
+Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C&#43;&#43;, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:" />
+  <meta name="author" content="Dat Luong blog" /><link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.e86ae67e01e2d2055106abf72be7357c950191060e5f159f24e2790fd8237e8c.css" integrity="sha256-6GrmfgHi0gVRBqv3K&#43;c1fJUBkQYOXxWfJOJ5D9gjfow=" />
+
+  
+  <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
+
+  <link rel="preload" as="image" href="https://avatars.githubusercontent.com/u/105619094?v=4" />
+
+  <link rel="preload" as="image" href="http://localhost:1313/github.svg" /><link rel="preload" as="image" href="http://localhost:1313/linkedin.svg" />
+
+  <script
+    defer
+    src="http://localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad()"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="http://localhost:1313/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="http://localhost:1313/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.157.0">
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="http://localhost:1313/"
+      >Dat Luong blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/datluongductuan"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./linkedin.svg)"
+        href="https://linkedin.com/in/dat-luong-432579158"
+        target="_blank"
+        rel="me"
+      >linkedin</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình</h1><div class="text-xs antialiased opacity-60"><time>Mar 16, 2026</time></div></header>
+
+  <section><p>Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ <strong>Lập trình viên</strong> sang <strong>Trình biên dịch (Compiler)</strong> và <strong>Môi trường thực thi (Runtime)</strong>.</p>
+<p>Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C++, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:</p>
+<p><img src="buffer-overflow-cpp.png" alt="Ví dụ lỗi Buffer Overflow trong C++"></p>
+<p>Trước đây, tại cấp độ vi xử lý, hoàn toàn không có sự khác biệt vật lý nào giữa data và code. Quyền quyết định phụ thuộc hoàn toàn vào con trỏ đang truy xuất nó. Vì vậy các nhà phát triển trình biên dịch và kernel đã áp dụng nhiều các biện pháp bảo vệ như chặn thực thi trong stack, hay bật chế độ ALSR (Address Space Layout Randomization) trên Linux. Mặc dù vậy hacker vẫn có cơ hội thể bypass.</p>
+<p>Khi OS đưa ra DEP/NX (chặn thực thi trên stack) và ASLR (xáo trộn địa chỉ), hacker đã tìm ra kỹ thuật <strong>ROP (Return-Oriented Programming)</strong> để bypass. Thay vì bơm mã độc mới vào stack, chúng tận dụng chính những đoạn code hợp lệ đã có sẵn trong bộ nhớ (như thư viện libc) rồi ghép nối chúng lại để làm điều chúng muốn.</p>
+<p>Nếu C/C++ giao quyền cho Lập trình viên, Rust giao quyền cho Trình biên dịch, và Go giao quyền cho Runtime, thì Java và Node.js giao toàn bộ sinh mạng cho một cỗ máy ảo (Virtual Machine / Engine).</p>
+<p>Các ngôn ngữ như Golang (nếu không dùng package <code>unsafe</code>) thực sự miễn nhiễm với các lỗi cấp thấp: Tràn bộ đệm (Buffer Overflow), Lỗi chuỗi định dạng (Format String), hay các cuộc tấn công ghi đè EIP (Ret-to-libc, ROP). Trình biên dịch và Garbage Collector đã khóa chặt cánh cửa này.</p>
+<p><img src="language-comparison-table.png" alt="So sánh quản lý bộ nhớ giữa các ngôn ngữ"></p>
+<h2 id="heap-memory">Heap Memory</h2>
+<p><img src="heap-memory.png" alt="Heap Memory"></p>
+<h2 id="smart-pointer">Smart Pointer</h2>
+<p>Để hạn chế những lỗ hổng bộ nhớ cấp thấp, khái niệm <strong>Con trỏ thông minh (Smart Pointer)</strong> đã ra đời. Về bản chất, Smart Pointer là một cấu trúc dữ liệu bọc (wrap) lấy một con trỏ thô (raw pointer) bên trong, đồng thời mang theo các siêu dữ liệu (metadata) hoặc logic để tự động quản lý vòng đời của vùng nhớ đó. Khi một smart pointer thoát khỏi phạm vi (scope), dữ liệu của nó sẽ tự động được xoá khỏi stack và heap.</p>
+<h3 id="1-modern-c-c11-trở-lên-người-tiên-phong-mang-tính-tự-nguyện">1. Modern C++ (C++11 trở lên): Người tiên phong mang tính tự nguyện</h3>
+<p>C++ là ngôn ngữ đặt nền móng cho triết lý <strong>RAII (Resource Acquisition Is Initialization)</strong> – gắn vòng đời của một vùng nhớ Heap vào một đối tượng nằm trên Stack. Khi đối tượng trên Stack bị hủy (hết phạm vi hàm), hàm hủy (Destructor) của nó sẽ tự động dọn dẹp vùng nhớ Heap. C++ cung cấp các Smart Pointers tiêu chuẩn:</p>
+<ul>
+<li><strong><code>std::unique_ptr</code> (Độc quyền sở hữu):</strong> Đảm bảo chỉ có một con trỏ duy nhất được phép trỏ tới vùng nhớ. Khi nó ra khỏi phạm vi, bộ nhớ tự động được <code>delete</code>. Hiệu năng của nó nhanh ngang ngửa con trỏ thô của C (Zero-cost abstraction).</li>
+<li><strong><code>std::shared_ptr</code> (Đếm tham chiếu - Reference Counting):</strong> Cho phép nhiều con trỏ cùng chia sẻ một vùng nhớ. Nó duy trì một biến đếm ngầm; khi biến đếm lùi về 0 (không còn ai sử dụng), bộ nhớ mới thực sự bị giải phóng.</li>
+</ul>
+<p>Sự an toàn trong C++ là <strong>tự nguyện (Opt-in)</strong>. Trình biên dịch C++ vẫn cho phép bạn dùng con trỏ thô (<code>*</code>), vẫn cho phép dùng hàm <code>strcpy()</code> hay mảng C-style.</p>
+<h3 id="2-rust-an-toàn-ép-buộc-ở-tầng-compiler-mandatory-safety">2. Rust: An toàn ép buộc ở tầng compiler (Mandatory Safety)</h3>
+<p>Rust giao toàn bộ quyền lực cho Trình biên dịch thông qua <strong>Borrow Checker</strong>, ép buộc mọi Smart Pointer phải tuân thủ luật lệ ngay từ lúc gõ code.</p>
+<ul>
+<li><strong><code>Box&lt;T&gt;</code>:</strong> Tương tự <code>unique_ptr</code>, nhưng trình biên dịch Rust sẽ kiểm tra gắt gao việc &ldquo;chuyển giao quyền sở hữu&rdquo; (Move semantics). Bạn không thể vô tình dùng lại một <code>Box</code> đã bị chuyển quyền.</li>
+<li><strong><code>Rc&lt;T&gt;</code> và <code>Arc&lt;T&gt;</code>:</strong> Tương tự <code>shared_ptr</code>, nhưng Rust phân tách rõ ràng phiên bản dùng cho đơn luồng (<code>Rc</code>) và đa luồng (<code>Arc</code>). Nếu bạn dùng <code>Rc</code> (không an toàn) để truyền dữ liệu giữa các luồng (Thread), trình biên dịch sẽ báo lỗi và từ chối tạo file thực thi.</li>
+</ul>
+<p><strong>Triết lý của Rust:</strong> An toàn tuyệt đối tại thời điểm biên dịch. Khối lượng công việc (mental workload) của lập trình viên là rất lớn vì phải thiết kế kiến trúc bộ nhớ cực kỳ chuẩn xác để làm hài lòng Trình biên dịch. Bù lại, hệ thống chạy với hiệu năng tối đa, không có độ trễ, và miễn nhiễm với các lỗi bộ nhớ vật lý.</p>
+<h3 id="3-golang-đẩy-hết-trách-nhiệm-cho-gc">3. Golang: Đẩy hết trách nhiệm cho GC</h3>
+<p>Khác với C++ và Rust, bạn sẽ hiếm khi thấy thuật ngữ &ldquo;Smart Pointer&rdquo; trong tài liệu của Go. Tại sao vậy? Bởi vì Go muốn mang lại trải nghiệm viết code đơn giản như C, nhưng lại an toàn như Java. Trong Go, mọi con trỏ (<code>*T</code>) và cấu trúc dữ liệu mặc định đã là &ldquo;Smart Pointer&rdquo; nhờ vào sự hậu thuẫn vô hình của Trình biên dịch và Runtime.</p>
+<p>Sự &ldquo;thông minh&rdquo; của Go được ẩn giấu qua các cơ chế:</p>
+<ul>
+<li><strong>Slice - Khắc tinh của Buffer Overflow:</strong> Một Slice trong Go không chỉ là một con trỏ như mảng của C. Nó là một cấu trúc dữ liệu (fat pointer) chứa 3 thành phần: một con trỏ thô, chiều dài (length), và dung lượng (capacity). Bất cứ khi nào bạn truy cập <code>slice[i]</code>, Runtime của Go tự động thực hiện Bounds Checking (Kiểm tra biên). Nếu <code>i</code> vượt quá giới hạn, Go ném ra lỗi <code>panic</code> và ngắt chương trình, triệt tiêu hoàn toàn cơ hội để hacker ghi đè lên EIP.</li>
+<li><strong>Escape Analysis (Phân tích thoát):</strong> Bạn không cần từ khóa <code>Box</code> hay <code>new</code> để quản lý Heap. Nếu một biến nội bộ bị trả về dưới dạng con trỏ cho hàm khác sử dụng, trình biên dịch Go tự động &ldquo;nâng cấp&rdquo; nó và đẩy lên Heap.</li>
+<li><strong>Garbage Collector (Bộ thu gom rác):</strong> Thay vì đếm tham chiếu như <code>shared_ptr</code> hay <code>Rc</code>, GC của Go là một tiến trình chạy ngầm, tự động theo dõi đồ thị con trỏ và quét sạch các vùng nhớ không còn ai tham chiếu tới.</li>
+</ul>
+<p><strong>Triết lý của Go:</strong> Tối ưu hóa năng suất. Bạn cứ việc dùng con trỏ thoải mái. Trách nhiệm dọn dẹp và kiểm tra an toàn đã có Runtime (Bounds Checking và GC) lo liệu. Đánh đổi lại, hệ thống sẽ tiêu tốn thêm một chút CPU và có những khoảng trễ cực nhỏ (latency) khi GC hoạt động.</p>
+<p><img src="smart-pointer-comparison.png" alt="So sánh Smart Pointer giữa các ngôn ngữ"></p>
+<h2 id="tổng-kết">Tổng kết</h2>
+<p><img src="language-spectrum.png" alt="Phổ ngôn ngữ: Kiểm soát vs An toàn"></p>
+<p>Việc lựa chọn ngôn ngữ lập trình sẽ phụ thuộc vào business, team dev, hoàn cảnh cụ thể mà sẽ đưa ra phương án phù hợp, lựa chọn nào cũng có đánh đổi. Không có ngôn ngữ nào phù hợp cho tất cả.</p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:1313/tags/memory"
+      >memory</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:1313/tags/c&#43;&#43;"
+      >c&#43;&#43;</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:1313/tags/rust"
+      >rust</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:1313/tags/golang"
+      >golang</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="http://localhost:1313/tags/systems-programming"
+      >systems-programming</a
+    ></footer><div class="mt-24! text-black dark:text-white" id="disqus_thread"></div>
+  <script>
+    const disqusShortname = 'datluong';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">&copy;2026
+    <a class="link" href="http://localhost:1313/">Dat Luong blog</a></div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
