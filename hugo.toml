@@ -9,7 +9,7 @@ theme = "paper"
 
 [services]
   [services.disqus]
-    shortname = 'datluong'     # use disqus comments
+    shortname = 'datluongductuan'     # use disqus comments
 
 [params]
   # color style
