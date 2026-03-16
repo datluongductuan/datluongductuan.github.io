@@ -7,10 +7,6 @@ theme = "paper"
   [caches.images]
     dir = ':cacheDir/images'
 
-[services]
-  [services.disqus]
-    shortname = 'datluongductuan'     # use disqus comments
-
 [params]
   # color style
   color = 'linen'                           # linen, wheat, gray, light
