@@ -22,5 +22,12 @@
       <guid>http://localhost:1313/post/do-tre-trong-cpu-va-o-cung/</guid>
       <description>&lt;p&gt;Truy cập qua ổ đĩa thì bao giờ cũng chậm hơn là xử lý trên RAM rồi, qua CPU Cache còn nhanh hơn nữa, vậy tận dụng và ứng dụng vào thực tế như nào? Mời anh em tham khảo bài này.&lt;/p&gt;&#xA;&lt;h2 id=&#34;độ-trễ-latency&#34;&gt;Độ trễ (Latency)&lt;/h2&gt;&#xA;&lt;p&gt;Đầu tiên, nói về độ trễ, chúng ta có một số ý chính như sau:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Truy xuất từ ổ đĩa sẽ chậm hơn 80 lần so với RAM, dù thay thế bằng ổ SSD thì vẫn chậm hơn 4 lần so với RAM&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Sắp xếp theo thứ tự nhanh nhất trước, chúng ta có:&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>[Case study] Tôi đã tối ưu 1 query PostgreSQL từ ~60s xuống còn ~2s như thế nào</title>
+      <link>http://localhost:1313/post/toi-uu-query-postgresql-60s-xuong-2s/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/toi-uu-query-postgresql-60s-xuong-2s/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;cover-toi-uu-sql.png&#34; alt=&#34;Tối ưu câu lệnh SQL&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;TLDR;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Đánh index với &lt;code&gt;WHERE&lt;/code&gt; mà &lt;code&gt;WHERE&lt;/code&gt; chỉ filter được 50% rows thì planner PostgreSQL chọn seq scan (full table scan) vì hiệu quả hơn.&lt;/li&gt;&#xA;&lt;li&gt;PostgreSQL để cấu hình mặc định &lt;code&gt;shared_buffer&lt;/code&gt; 128MB, mà tài nguyên RAM máy chủ đang có nhiều hơn → cần tăng lên để tận dụng hết tài nguyên.&lt;/li&gt;&#xA;&lt;li&gt;Dữ liệu query theo nghiệp vụ quá nhiều, từ 500MB đến 1GB cho 1 bảng xong câu lệnh SQL lại &lt;code&gt;UNION ALL&lt;/code&gt; ghép lại → cần áp dụng một số cơ chế sử dụng bộ nhớ đệm như mview, cache superset hoặc thêm filter timestamp.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Tháng 12 vừa rồi em intern data team tôi có viết 1 câu SQL để làm báo cáo cho dashboard, chưa rõ viết kiểu gì sau khi bấm chạy thì sập luôn cả hệ thống dashboard Superset luôn. Tranh thủ cũng có kiến thức về tối ưu cơ sở dữ liệu bèn chạy sang giúp không em ấy không qua thử việc mất :)). Câu lệnh SQL thì khá dài nhưng nhìn chung có dạng như sau:&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
