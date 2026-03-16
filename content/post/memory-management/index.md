@@ -1,9 +1,11 @@
 +++
 date = '2026-03-16'
 draft = false
-title = 'Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình'
+title = 'Quản lý bộ nhớ trong ngôn ngữ lập trình'
 tags = ['memory', 'c++', 'rust', 'golang', 'systems-programming']
 +++
+
+![Heap Memory](heap-memory.png)
 
 Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ **Lập trình viên** sang **Trình biên dịch (Compiler)** và **Môi trường thực thi (Runtime)**.
 
@@ -20,10 +22,6 @@ Nếu C/C++ giao quyền cho Lập trình viên, Rust giao quyền cho Trình bi
 Các ngôn ngữ như Golang (nếu không dùng package `unsafe`) thực sự miễn nhiễm với các lỗi cấp thấp: Tràn bộ đệm (Buffer Overflow), Lỗi chuỗi định dạng (Format String), hay các cuộc tấn công ghi đè EIP (Ret-to-libc, ROP). Trình biên dịch và Garbage Collector đã khóa chặt cánh cửa này.
 
 ![So sánh quản lý bộ nhớ giữa các ngôn ngữ](language-comparison-table.png)
-
-## Heap Memory
-
-![Heap Memory](heap-memory.png)
 
 ## Smart Pointer
 

@@ -20,12 +20,13 @@
   />
 
   
-  <title>Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình - Dat Luong blog</title>
+  <title>Quản lý bộ nhớ trong ngôn ngữ lập trình - Dat Luong blog</title>
 
   
   <meta name="theme-color" />
 
-  <meta name="description" content="Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ Lập trình viên sang Trình biên dịch (Compiler) và Môi trường thực thi (Runtime).
+  <meta name="description" content="
+Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ Lập trình viên sang Trình biên dịch (Compiler) và Môi trường thực thi (Runtime).
 Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C&#43;&#43;, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:" />
   <meta name="author" content="Dat Luong blog" /><link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.e86ae67e01e2d2055106abf72be7357c950191060e5f159f24e2790fd8237e8c.css" integrity="sha256-6GrmfgHi0gVRBqv3K&#43;c1fJUBkQYOXxWfJOJ5D9gjfow=" />
 
@@ -147,9 +148,10 @@ Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn
       class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
     ><article>
   <header class="mb-14">
-    <h1 class="my-0! pb-2.5">Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình</h1><div class="text-xs antialiased opacity-60"><time>Mar 16, 2026</time></div></header>
+    <h1 class="my-0! pb-2.5">Quản lý bộ nhớ trong ngôn ngữ lập trình</h1><div class="text-xs antialiased opacity-60"><time>Mar 16, 2026</time></div></header>
 
-  <section><p>Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ <strong>Lập trình viên</strong> sang <strong>Trình biên dịch (Compiler)</strong> và <strong>Môi trường thực thi (Runtime)</strong>.</p>
+  <section><p><img src="heap-memory.png" alt="Heap Memory"></p>
+<p>Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ <strong>Lập trình viên</strong> sang <strong>Trình biên dịch (Compiler)</strong> và <strong>Môi trường thực thi (Runtime)</strong>.</p>
 <p>Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C++, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:</p>
 <p><img src="buffer-overflow-cpp.png" alt="Ví dụ lỗi Buffer Overflow trong C++"></p>
 <p>Trước đây, tại cấp độ vi xử lý, hoàn toàn không có sự khác biệt vật lý nào giữa data và code. Quyền quyết định phụ thuộc hoàn toàn vào con trỏ đang truy xuất nó. Vì vậy các nhà phát triển trình biên dịch và kernel đã áp dụng nhiều các biện pháp bảo vệ như chặn thực thi trong stack, hay bật chế độ ALSR (Address Space Layout Randomization) trên Linux. Mặc dù vậy hacker vẫn có cơ hội thể bypass.</p>
@@ -157,8 +159,6 @@ Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn
 <p>Nếu C/C++ giao quyền cho Lập trình viên, Rust giao quyền cho Trình biên dịch, và Go giao quyền cho Runtime, thì Java và Node.js giao toàn bộ sinh mạng cho một cỗ máy ảo (Virtual Machine / Engine).</p>
 <p>Các ngôn ngữ như Golang (nếu không dùng package <code>unsafe</code>) thực sự miễn nhiễm với các lỗi cấp thấp: Tràn bộ đệm (Buffer Overflow), Lỗi chuỗi định dạng (Format String), hay các cuộc tấn công ghi đè EIP (Ret-to-libc, ROP). Trình biên dịch và Garbage Collector đã khóa chặt cánh cửa này.</p>
 <p><img src="language-comparison-table.png" alt="So sánh quản lý bộ nhớ giữa các ngôn ngữ"></p>
-<h2 id="heap-memory">Heap Memory</h2>
-<p><img src="heap-memory.png" alt="Heap Memory"></p>
 <h2 id="smart-pointer">Smart Pointer</h2>
 <p>Để hạn chế những lỗ hổng bộ nhớ cấp thấp, khái niệm <strong>Con trỏ thông minh (Smart Pointer)</strong> đã ra đời. Về bản chất, Smart Pointer là một cấu trúc dữ liệu bọc (wrap) lấy một con trỏ thô (raw pointer) bên trong, đồng thời mang theo các siêu dữ liệu (metadata) hoặc logic để tự động quản lý vòng đời của vùng nhớ đó. Khi một smart pointer thoát khỏi phạm vi (scope), dữ liệu của nó sẽ tự động được xoá khỏi stack và heap.</p>
 <h3 id="1-modern-c-c11-trở-lên-người-tiên-phong-mang-tính-tự-nguyện">1. Modern C++ (C++11 trở lên): Người tiên phong mang tính tự nguyện</h3>
