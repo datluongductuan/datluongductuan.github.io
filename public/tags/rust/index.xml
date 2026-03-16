@@ -9,11 +9,11 @@
     <lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Quản lý bộ nhớ qua các thế hệ ngôn ngữ lập trình</title>
+      <title>Quản lý bộ nhớ trong ngôn ngữ lập trình</title>
       <link>http://localhost:1313/post/memory-management/</link>
       <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/memory-management/</guid>
-      <description>&lt;p&gt;Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ &lt;strong&gt;Lập trình viên&lt;/strong&gt; sang &lt;strong&gt;Trình biên dịch (Compiler)&lt;/strong&gt; và &lt;strong&gt;Môi trường thực thi (Runtime)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C++, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;heap-memory.png&#34; alt=&#34;Heap Memory&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Trong suốt nhiều thập kỷ, lịch sử khoa học máy tính đã chứng kiến một sự dịch chuyển mang tính triết lý: chuyển giao trách nhiệm quản lý vùng nhớ từ &lt;strong&gt;Lập trình viên&lt;/strong&gt; sang &lt;strong&gt;Trình biên dịch (Compiler)&lt;/strong&gt; và &lt;strong&gt;Môi trường thực thi (Runtime)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Việc đẩy phần quản lý bộ nhớ cho lập trình viên hay bộ dọn rác (GC) xử lý sẽ tuỳ vào mục đích của người tạo ngôn ngữ lập trình. Với những ngôn ngữ lập trình như C/C++, việc quản lý bộ nhớ cũng cần rất để ý nếu không sẽ dễ gặp các lỗi kinh điển như tràn bộ đệm. Chúng ta xem ví dụ sau:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
