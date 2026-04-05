@@ -2,19 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
-    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/database/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/distributed-systems/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/durability/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fsync/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/mysql/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/postgresql/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/system-design/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/tai-sao-postgresql-chon-panic-khi-fsync-that-bai/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
     <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/golang/</loc>
     <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/memory/</loc>
-    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
     <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/memory-management/</loc>
@@ -24,9 +51,6 @@
     <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/systems-programming/</loc>
-    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cpu/</loc>
@@ -41,11 +65,17 @@
     <loc>http://localhost:1313/tags/performance/</loc>
     <lastmod>2025-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/system-design/</loc>
-    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/post/do-tre-trong-cpu-va-o-cung/</loc>
     <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/toi-uu-query-postgresql-60s-xuong-2s/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/optimization/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/sql/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url>
