@@ -49,6 +49,13 @@ done
 
 Match each image to its position in the post based on visual content, then rename descriptively when copying.
 
+## Reading time & Table of Contents
+
+After the intro paragraph (before TLDR or first section), add:
+
+1. **Reading time** — estimate from word count (~200 words/min for technical Vietnamese). Format: `*~X phút đọc*`
+2. **Table of Contents** — manual `## Mục lục` with markdown anchor links to all `##` and `###` headings. Paper theme has no built-in TOC, so this is done in markdown.
+
 ## Rules
 
 - Slug must be lowercase kebab-case, derived from the post title, Vietnamese-friendly (transliterate if needed)
